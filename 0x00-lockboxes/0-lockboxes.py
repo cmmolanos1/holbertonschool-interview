@@ -19,7 +19,9 @@ def open_box(box, opened, boxes):
         return opened
     else:
         for b in box:
-            if b < len(boxes) and b not in opened:
+            if b > len(boxes):
+                opened.append(b)
+            elif b < len(boxes) and b not in opened:
                 opened.append(b)
                 # Open the box, but save a temporal list to allow
                 # the iteration.
