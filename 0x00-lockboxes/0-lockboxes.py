@@ -41,6 +41,8 @@ def canUnlockAll(boxes):
     Returns:
         bool: True if all boxes could be opened. Otherwise False.
     """
+    if len(boxes) < 1:
+        return
     boxes_opened = [0]
     opened = open_box(boxes[0], boxes_opened, boxes)
     if len(opened) == len(boxes):
