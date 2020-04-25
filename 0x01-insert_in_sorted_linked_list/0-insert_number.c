@@ -13,36 +13,30 @@ listint_t *insert_node(listint_t **head, int number)
 	listint_t *minor;
 	listint_t *new;
 
-	if (*head == NULL || head == NULL)
+	if (head == NULL)
 		return (NULL);
 
+	/* Create and fill new node */
 	new = malloc(sizeof(listint_t));
 	if (new == NULL)
 		return (NULL);
 	new->n = number;
 
-	/* If new->n is smaller than head->n, replace head */
-	if (new->n < (*head)->n)
+	/* If new is smaller than head, replace head */
+	if (*head == NULL || new->n <= (*head)->n)
 	{
 		new->next = *head;
 		*head = new;
-		return (new);
 	}
 	else
 	{
-		/* Starting from head, search the node with n */
-		/* greater than number */
 		minor = *head;
-		while (minor->next != NULL)
-		{
-			if (minor->next->n > number)
-				break;
+		while (minor->next != NULL && (minor->next->n < number))
 			minor = minor->next;
-		}
 
 		/* Connect minor -> new -> next */
 		new->next = minor->next;
 		minor->next = new;
-		return (new);
 	}
+	return (new);
 }
