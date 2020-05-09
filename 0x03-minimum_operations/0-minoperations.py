@@ -3,10 +3,18 @@
 
 
 def minOperations(n):
+    """Calculares the minimum number of copyall/paste operations.
+
+    Args:
+        n: goal number
+
+    Returns:
+        int: number of operations.
+    """
     number = 1
     copy = 0
     operations = 0
-    if n < 2:
+    if type(n) is not int or n < 2:
         return 0
     else:
         for i in range(n):
