@@ -54,14 +54,14 @@ int topple(int n)
 		return (0);
 }
 /**
-* unstable_neighneighbors - checks if has the box is going to recieve
+* unstable_neighbors - checks if the box is going to recieve
 * grains from near collapsed boxes.
 * @grid1: Grid to be analize.
 * @i: Rows coordinate.
 * @j: Cols coordinate.
 * Return: number of grain recieved.
 */
-int unstable_neighneighbors(int grid1[3][3], int i, int j)
+int unstable_neighbors(int grid1[3][3], int i, int j)
 {
 	int up = 0, down = 0, right = 0, left = 0;
 
@@ -117,7 +117,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 			for (j = 0; j < 3; j++)
 			{
 				toppling =  topple(g_copy[i][j]);
-				neighbors = unstable_neighneighbors(g_copy, i, j);
+				neighbors = unstable_neighbors(g_copy, i, j);
 				grid1[i][j] = grid1[i][j] - toppling + neighbors;
 			}
 		}
