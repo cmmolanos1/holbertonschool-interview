@@ -22,9 +22,7 @@ int palindrome(listint_t *head, int n)
 	for (i = 0; i < n; i++)
 		right = right->next;
 
-	if (head == NULL)
-		return (1);
-	else if ((n == 0 || n == 1) && left->n == right->n)
+	if ((n == 0 || n == 1) && left->n == right->n)
 		return (1);
 	else if (left->n == right->n)
 		return (palindrome(left->next, n - 2));
