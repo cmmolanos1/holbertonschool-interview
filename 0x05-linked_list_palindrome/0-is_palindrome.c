@@ -1,33 +1,25 @@
 #include "lists.h"
-
 /**
 * palindrome - check if a linked list is palindrome.
 *
-* @head: Pointer to the parent node.
-* @tail: Number of jumps until last node.
+* @left: Pointer to the parent node.
+* @right: auxuliar pointer
 * Return: 1 if palindrome, otherwise 0.
 */
-int palindrome(listint_t *head, listint_t *tail)
+int palindrome(listint_t **left, listint_t *right)
 {
-	listint_t *left, *right, *aux;
+	int sublist;
 
-	if (head == NULL)
+	if (right == NULL)
 		return (1);
 
-	left = head;
-	right = tail;
-	aux = left;
-
-	if ((left == right || left->next == right) && left->n == right->n)
-		return (1);
-	else if (left->n == right->n)
-	{
-		while (aux->next != right)
-			aux = aux->next;
-		return (palindrome(left->next, aux));
-	}
-	else
+	if (palindrome(left, right->next) == 0)
 		return (0);
+
+	sublist = (right->n == (*left)->n);
+
+	*left = (*left)->next;
+	return (sublist);
 }
 /**
 * is_palindrome - check if a linked list is palindrome.
@@ -37,15 +29,8 @@ int palindrome(listint_t *head, listint_t *tail)
 */
 int is_palindrome(listint_t **head)
 {
-	listint_t *aux;
-
 	if (head == NULL || *head == NULL)
 		return (1);
 
-	aux = *head;
-
-	while (aux->next != NULL)
-		aux = aux->next;
-
-	return (palindrome(*head, aux));
+	return (palindrome(head, *head));
 }
