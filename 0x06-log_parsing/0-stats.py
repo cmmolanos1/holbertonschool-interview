@@ -7,19 +7,19 @@ import sys
 counter = 1
 sum_size = 0
 
-status_dir = {200: 0,
-              301: 0,
-              400: 0,
-              401: 0,
-              403: 0,
-              404: 0,
-              405: 0,
-              500: 0}
+status_dir = {'200': 0,
+              '301': 0,
+              '400': 0,
+              '401': 0,
+              '403': 0,
+              '404': 0,
+              '405': 0,
+              '500': 0}
 
 try:
     for line in sys.stdin:
-        ln = line.replace('\n', ' ').split()
-        status = int(ln[-2])
+        ln = line.split()
+        status = ln[-2]
         size = int(ln[-1])
         # print("Status: {}, Size: {}".format(status, size))
 
