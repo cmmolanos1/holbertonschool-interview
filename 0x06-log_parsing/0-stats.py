@@ -24,7 +24,8 @@ try:
         # print("Status: {}, Size: {}".format(status, size))
 
         sum_size += size
-        status_dir[status] += 1
+        if status in status_dir:
+            status_dir[status] += 1
 
         if counter % 10 == 0:
             print("File size: {}".format(sum_size))
