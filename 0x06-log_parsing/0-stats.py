@@ -37,10 +37,7 @@ try:
 
         counter += 1
 
-except Exception:
-    pass
-
-finally:
+except KeyboardInterrupt:
     print("File size: {}".format(sum_size))
     for key in sorted(status_dir.keys()):
         if status_dir[key] != 0:
