@@ -14,15 +14,15 @@ int search(int *array, size_t left, size_t right, int value)
 
 	mid = ((right - left) / 2) + left;
 
-    printf("Searching in array: ");
+	printf("Searching in array: ");
 
-    for (i = left; i <= right; i++)
-    {
-        if (i < right)
-            printf("%i, ", array[i]);
-        else
-            printf("%i\n", array[i]);
-    }
+	for (i = left; i <= right; i++)
+	{
+		if (i < right)
+			printf("%i, ", array[i]);
+		else
+			printf("%i\n", array[i]);
+	}
 
 	if (array[mid] == value && array[mid - 1] != value)
 		return (mid);
