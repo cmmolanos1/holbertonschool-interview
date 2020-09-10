@@ -9,34 +9,32 @@
  */
 int search(int *array, size_t left, size_t right, int value)
 {
-	int m;
+	int mid;
 	size_t i;
 
-	if (array == NULL)
+	mid = ((right - left) / 2) + left;
+
+    printf("Searching in array: ");
+
+    for (i = left; i <= right; i++)
+    {
+        if (i < right)
+            printf("%i, ", array[i]);
+        else
+            printf("%i\n", array[i]);
+    }
+
+	if (array[mid] == value && array[mid - 1] != value)
+		return (mid);
+
+	if (left == right)
 		return (-1);
 
-	if (left <= right)
-	{
-		m = (left + right) / 2;
+	if (array[mid] >= value)
+		return (search(array, left, mid, value));
 
-		printf("Searching in array: ");
-		for (i = left; i <= right; i++)
-		{
-			if (i < right)
-				printf("%i, ", array[i]);
-			else
-				printf("%i\n", array[i]);
-		}
-
-		if ((size_t)m == left && array[m] == value)
-			return (m);
-		else if (array[m] == value)
-			return (search(array, left, m, value));
-		else if (array[m] < value)
-			return (search(array, m + 1, right, value));
-		else if (array[m] > value)
-			return (search(array, left, m - 1, value));
-	}
+	if (array[mid] < value)
+		return (search(array, mid + 1, right, value));
 
 	return (-1);
 }
