@@ -21,12 +21,22 @@ def makeChange(coins, total):
 
     T = [0] + [float('inf')] * (total)
 
-    for i in range(total + 1):
-        for c in range(len(coins)):
-            if i - coins[c] >= 0:
-                res = T[i - coins[c]]
+    # for i in range(total + 1):
+    #     for c in range(len(coins)):
+    #         if i - coins[c] >= 0:
+    #             res = T[i - coins[c]]
+    #
+    #             if res != float('inf'):
+    #                 T[i] = min(T[i], res + 1)
+    #
+    # return T[total] if T[total] != float('inf') else -1
 
-                if res != float('inf'):
-                    T[i] = min(T[i], res + 1)
+    for i in range(total + 1):
+        for coin in coins:
+            if coin > i:
+                break
+
+            if T[i - coin] != -1:
+                T[i] = min(T[i - coin] + 1, T[i])
 
     return T[total] if T[total] != float('inf') else -1
