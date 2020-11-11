@@ -19,11 +19,9 @@ def makeChange(coins, total):
     if total < 0:
         return 0
 
-    T = [0] * (total + 1)
+    T = [0] + [float('inf')] * (total)
 
-    for i in range(1, total + 1):
-        T[i] = float('inf')
-
+    for i in range(total + 1):
         for c in range(len(coins)):
             if i - coins[c] >= 0:
                 res = T[i - coins[c]]
