@@ -7,33 +7,29 @@
  */
 List *add_node_end(List **list, char *str)
 {
-	List *new, *last = *list;
-
-	if (list == NULL)
-		return (NULL);
+	List *new, *last;
 
 	new = malloc(sizeof(List));
 	if (new == NULL)
 		return (NULL);
 
-	new->str = strdup(str);
-	new->next = NULL;
-
 	if (*list == NULL)
 	{
-		new->prev = NULL;
+		new->str = strdup(str);
+		new->next = new->prev = new;
 		*list = new;
 		return (new);
 	}
 
-	while (last->next != NULL)
-		last = last->next;
+	last = (*list)->prev;
 
-	last->next = new;
+	new->str = strdup(str);
+	new->next = *list;
+	(*list)->prev = new;
 	new->prev = last;
+	last->next = new;
 
 	return (new);
-
 }
 /**
  * add_node_end - adds a new node at the end of a double linked list
@@ -43,20 +39,27 @@ List *add_node_end(List **list, char *str)
  */
 List *add_node_begin(List **list, char *str)
 {
-	List *new;
+	List *new, *last;
 
 	new = malloc(sizeof(List));
 	if (new == NULL)
 		return (NULL);
 
+	if (*list == NULL)
+	{
+		new->str = strdup(str);
+		new->next = new->prev = new;
+		*list = new;
+		return (new);
+	}
+
+	last = (*list)->prev;
+
 	new->str = strdup(str);
 	new->next = *list;
-	new->prev = NULL;
+	new->prev = last;
 
-	if (*list != NULL)
-		(*list)->prev = new;
-
-	(*list) = new;
-
+	last->next = (*list)->prev = new;
+	*list = new;
 	return (new);
 }
